@@ -441,9 +441,158 @@ Each query shows what a business analyst would actually type into your system.
 
 ## **For Competition Evaluation**
 
-Your system should be tested on:
+## Category 1: Single Intent Analysis (Basic)
+```json
+[
+  {
+    "query_id": "Q036",
+    "query": "Which calls show customers confused about insurance features?",
+    "expected_intent": "Feature Understanding (Insurance)",
+    "complexity": "simple"
+  },
+  {
+    "query_id": "Q037",
+    "query": "What triggers technical support calls in telecom?",
+    "expected_intent": "Technical Support (Telecom)",
+    "complexity": "simple"
+  },
+  {
+    "query_id": "Q038",
+    "query": "Why do customers request hotel room upgrades?",
+    "expected_intent": "Upgrade Requests (Hotel)",
+    "complexity": "simple"
+  },
+  {
+    "query_id": "Q039",
+    "query": "Which conversations indicate credit limit requests in banking?",
+    "expected_intent": "Credit Limit Requests (Banking)",
+    "complexity": "simple"
+  },
+  {
+    "query_id": "Q040",
+    "query": "What causes product replacement requests in retail?",
+    "expected_intent": "Replacement vs Refund (Retail)",
+    "complexity": "simple"
+  }
+]
 
-✅ **Accuracy**: Does it identify correct intents and causal factors?  
+Category 2: Comparative Queries (Medium)
+[
+  {
+    "query_id": "Q041",
+    "query": "Compare refund request patterns between flights and retail",
+    "expected_intents": ["Refund Policy (Flight)", "Product Returns (Retail)"],
+    "complexity": "medium"
+  },
+  {
+    "query_id": "Q042",
+    "query": "Which domain shows more loyalty program mentions: retail or flights?",
+    "expected_intents": ["Loyalty Program (Retail)", "Loyalty Program (Flight)"],
+    "complexity": "medium"
+  },
+  {
+    "query_id": "Q043",
+    "query": "How do cancellation complaints differ between hotels and flights?",
+    "expected_intents": ["Cancellation Policies (Hotel)", "Refund Policy (Flight)"],
+    "complexity": "medium"
+  },
+  {
+    "query_id": "Q044",
+    "query": "Compare connectivity complaints vs feature requests in telecom",
+    "expected_intents": ["Connectivity Complaints (Telecom)", "Feature Requests (Telecom)"],
+    "complexity": "medium"
+  }
+]
+
+Category 3: Temporal/Trend Queries (Medium)
+[
+  {
+    "query_id": "Q045",
+    "query": "During which turn do banking customers start complaining about fees?",
+    "expected_intent": "Fee Complaints (Banking)",
+    "analysis_type": "temporal",
+    "complexity": "medium"
+  },
+  {
+    "query_id": "Q046",
+    "query": "At what point do flight customers ask about price differences?",
+    "expected_intent": "Price Sensitivity (Flight)",
+    "analysis_type": "temporal",
+    "complexity": "medium"
+  },
+  {
+    "query_id": "Q047",
+    "query": "When do retail customers typically request replacements in a call?",
+    "expected_intent": "Replacement vs Refund (Retail)",
+    "analysis_type": "temporal",
+    "complexity": "medium"
+  }
+]
+
+Category 4: Root Cause Queries (Complex)
+[
+  {
+    "query_id": "Q048",
+    "query": "What causes network outages to generate repeated telecom calls?",
+    "expected_intent": "Network Outages (Telecom)",
+    "requires": ["causal_factors", "repeat_call_patterns"],
+    "complexity": "complex"
+  },
+  {
+    "query_id": "Q049",
+    "query": "Why do insurance policy renewals fail?",
+    "expected_intent": "Policy Renewal (Insurance)",
+    "requires": ["causal_factors", "customer_behavior_patterns"],
+    "complexity": "complex"
+  },
+  {
+    "query_id": "Q050",
+    "query": "What triggers complaints about hotel service quality?",
+    "expected_intent": "Service Complaints (Hotel)",
+    "requires": ["root_cause_analysis", "conversation_patterns"],
+    "complexity": "complex"
+  },
+  {
+    "query_id": "Q051",
+    "query": "Why are flight refunds delayed according to customer conversations?",
+    "expected_intent": "Refund Policy (Flight)",
+    "requires": ["causal_factors", "process_analysis"],
+    "complexity": "complex"
+  }
+]
+
+Category 5: Actionable Insight Queries (Complex)
+[
+  {
+    "query_id": "Q052",
+    "query": "How can agents reduce refund disputes in retail calls?",
+    "expected_intent": "Product Returns (Retail)",
+    "requires": ["intervention_points", "recommendations", "impact_estimates"],
+    "complexity": "complex"
+  },
+  {
+    "query_id": "Q053",
+    "query": "Which actions improve customer trust in insurance calls?",
+    "expected_intent": "Customer Trust (Insurance)",
+    "requires": ["agent_behavior_patterns", "success_metrics"],
+    "complexity": "complex"
+  },
+  {
+    "query_id": "Q054",
+    "query": "How can flight agents reduce customer stress during delays?",
+    "expected_intent": "Urgency & Stress (Flight)",
+    "requires": ["stress_indicators", "successful_interventions"],
+    "complexity": "complex"
+  },
+  {
+    "query_id": "Q055",
+    "query": "What steps improve upselling success in insurance calls?",
+    "expected_intent": "Upselling Strategy (Insurance)",
+    "requires": ["success_patterns", "failed_patterns", "recommendations"],
+    "complexity": "complex"
+  }
+]
+```
 ✅ **Evidence Quality**: Are cited transcript spans actually relevant?  
 ✅ **Actionability**: Are recommendations practical?  
 ✅ **Explainability**: Can judges understand the reasoning?  
